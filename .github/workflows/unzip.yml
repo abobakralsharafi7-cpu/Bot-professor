@@ -1,1 +1,56 @@
-غ
+name: Unzip PROFESSOR uploaded project
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  unzip:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Unzip uploaded project
+        run: |
+          set -e
+
+          ZIP_FILE="PROFESSOR_READY_FULL.zip"
+
+          if [ ! -f "$ZIP_FILE" ]; then
+            echo "❌ لم أجد الملف: $ZIP_FILE"
+            ls -la
+            exit 1
+          fi
+
+          rm -rf extracted
+          rm -rf PROFESSOR
+
+          unzip -o "$ZIP_FILE" -d extracted
+
+          # مهم جداً: لا نسمح للـ Action بتعديل ملفات workflows
+          rm -rf extracted/.github
+
+          find extracted -type d -exec chmod 755 {} \;
+          find extracted -type f -exec chmod 644 {} \;
+
+          shopt -s dotglob
+          cp -R extracted/* .
+          shopt -u dotglob
+
+          chmod +x PROFESSOR/gradlew || true
+
+          rm -rf extracted
+          rm -f "$ZIP_FILE"
+
+      - name: Commit extracted files
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add -A
+          git commit -m "Extract PROFESSOR project files" || echo "No changes to commit"
+          git push
