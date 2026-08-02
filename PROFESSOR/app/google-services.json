@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "954506951576",
+    "project_id": "professor-be4d8",
+    "storage_bucket": "professor-be4d8.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:954506951576:android:e52f4337311e8ff86dc9ed",
+        "android_client_info": {
+          "package_name": "com.professor.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCR5g1f194wbM0Yb_X5AScVfgc3rd4633c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
