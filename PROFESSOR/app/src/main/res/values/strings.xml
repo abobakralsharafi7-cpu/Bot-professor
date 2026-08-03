@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">PROFESSOR</string>
+    <string name="overlay_permission_title">تشغيل الزر العائم</string>
+    <string name="overlay_permission_body">يحتاج PROFESSOR إلى صلاحية الظهور فوق التطبيقات حتى يعمل مثل فقاعة ماسنجر.</string>
+</resources>
